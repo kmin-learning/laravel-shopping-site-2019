@@ -14,16 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
-        Blade::directive('hellokmin', function(){
-            return "<?php echo 'ĐÂY LÀ CHỈ THỊ LỆNH ĐÃ ĐƯỢC CUSTOMIZE' ?>";
-        });
-
-        view()->composer('layouts.user_info', function($view) {
-            $username = "Kmin";
-
-            $view->with('username', $username);
+        view()->composer('cart.quantities', function($view){
+            $quantities = Cart::total(0);
+            $view->with('quantities', $quantities);
         });
     }
 
