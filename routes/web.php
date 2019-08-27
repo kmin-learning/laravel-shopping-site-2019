@@ -19,3 +19,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/cart', 'CartController@index');
+
+Route::get('/check_out', 'CheckOutController@index');
