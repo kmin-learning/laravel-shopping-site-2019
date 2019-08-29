@@ -19,3 +19,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Route to show product detail
+Route::get('product_detail/{id}','ProductController@show');
