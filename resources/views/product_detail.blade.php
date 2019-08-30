@@ -22,9 +22,9 @@
                         <td width=40%>
                             So luong:
                             <div btn-group>
-                                <button type="button" id="increase">+</button>
-                                <input type="text" id="quanity" value="0" style="width:30px; text-align:center">
-                                <button type="button" id="decrease">-</button>
+                                <button type="button" id="decrease" style="width:30px">-</button>
+                                <input type="tel" id="quanity" value="1" style="width:30px; text-align:center">
+                                <button type="button" id="increase" style="width:30px">+</button>
                             </div>
                         </td>
                         <td width=60%>
@@ -94,4 +94,5 @@
     <h4 style="text-transform:uppercase">gioi thieu sach</h4>
     <p class="introduce-book" style="text-align:justify">{{$product_detail->introduction}}</p>
 </div>
+<script type="text/javascript" src="{{ URL::asset('js/incr_decr_button.js') }}"></script>
 @endsection
