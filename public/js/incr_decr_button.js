@@ -1,5 +1,5 @@
 function validate_quanity(){
-    var counter = $("#quanity").numbersOnly(val());
+    var counter = $("#quanity").val();
     var max_quanity =100;
     var min_quanity =1;
     //Check invalid number
