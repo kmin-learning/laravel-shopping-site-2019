@@ -19,19 +19,23 @@
                         <td colspan="2">{{$product_detail->product_price}}&emsp;<span style="text-decoration:line-through">$300.00</span></td>
                     </tr>
                     <tr>
+                        <form action={{url('command_add_product')}} method="post">
+                                {{ csrf_field() }}
                         <td width=40%>
                             So luong:
                             <div btn-group>
                                 <button type="button" id="decrease" style="width:30px">-</button>
-                                <input type="tel" id="quanity" value="1" style="width:30px; text-align:center">
+                                <input type="tel" id="quantity" value="1" style="width:30px; text-align:center" name="quantity_product">
+                                <input type="hidden" value={{$product_detail->id}} name="id_product">
                                 <button type="button" id="increase" style="width:30px">+</button>
                             </div>
                         </td>
                         <td width=60%>
-                            <button class="btn btn-danger" style="width:350px;text-transform:uppercase">
+                            <button type="submit" class="btn btn-danger" style="width:350px;text-transform:uppercase">
                                 <span><i class="fas fa-shopping-cart"></i>&emsp;chon mua</span>
                             </button>
                         </td>
+                        </form>
                     </tr>
                 </tbody>
             </table>
