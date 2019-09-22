@@ -23,3 +23,8 @@ Route::get('product_detail/{id}','ProductController@show');
 
 Route::post('command_add_product','CartController@store');
 Route::get('Cart_detail','CartController@index');
+
+//Auto fill the text to search
+Route::post('auto_fill','ProductController@fetch');
+//Search keyword to find the product
+Route::get('command_search_keyword_product','ProductController@search_keyword');
