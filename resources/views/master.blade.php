@@ -33,12 +33,22 @@
 				</li>
 
 				<?php
-				if(isset($_COOKIE['user'])){
-					echo '<li><a href="#" class="dropdowm-toggle" data-toggle="dropdown"><span
-					class="glyphicon glyphicon-user"></span>Hello, '.$_COOKIE['user'].'</a></li>';
+				if(Auth::check()){
+                ?>
+					<li><a href="#" class="dropdowm-toggle" data-toggle="dropdown"><span
+					class="glyphicon glyphicon-user"></span>{{Auth::user()->name}}</a></li>
 
-					
-					echo '<li><a href="index.php?logout_id=1">Log Out</a></li>';
+                    <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                <?php
 				}
 				else	
 				{
@@ -61,7 +71,7 @@
 		<div class="container">
 			<div class="top-nav">
 				<ul class="memenu skyblue">
-                    <li class="active"><a href="index.html">Home</a></li>
+                    <li class="active"><a href="index.php">Home</a></li>
                     
 					<li class="grid"><a href="#">Products</a></li>
                     

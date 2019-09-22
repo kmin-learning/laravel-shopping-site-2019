@@ -23,3 +23,9 @@ Route::get('product_detail/{id}','ProductController@show');
 
 Route::post('command_add_product','CartController@store');
 Route::get('Cart_detail','CartController@index');
+
+//Route admin
+Route::prefix('admin')->group( function() {
+    Route::get('order_list', 'OrderController@index')->name('order_list)');
+    Route::get('order_detail/{id}','OrderController@show');
+});
