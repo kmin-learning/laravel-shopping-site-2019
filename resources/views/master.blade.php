@@ -45,7 +45,7 @@
 				<?php
 				if(Auth::check()){
                 ?>
-					<li><a href="#" class="dropdowm-toggle" data-toggle="dropdown"><span
+					<li><a href="{{ route('order_list') }}" class="dropdowm-toggle" data-toggle="dropdown"><span
 					class="glyphicon glyphicon-user"></span>{{Auth::user()->name}}</a></li>
 
                     <li><a class="dropdown-item" href="{{ route('logout') }}"
