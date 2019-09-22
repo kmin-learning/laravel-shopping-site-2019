@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-md-2">
 			        <div class="navbar-header">
-				    <a href="index.php" class="navbar-brand">OnlineShopping</a>
+				    <a href={{ route('product_homepage') }} class="navbar-brand">OnlineShopping</a>
                     </div>
                 </div>
                 <div class="col-md-5 dropdown">

@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'ProductController@index');
+Route::get('/', 'ProductController@index')->name('product_homepage');
 
 // AUTH
 Auth::routes();
@@ -34,3 +34,10 @@ Route::prefix('admin')->group( function() {
 Route::post('auto_fill','ProductController@fetch');
 //Search keyword to find the product
 Route::get('command_search_keyword_product','ProductController@search_keyword');
+
+Route::get('testProduct', function(){
+    Cart::destroy();
+    //Cart::Add([['id' => 1, 'name' => 'TV Sony', 'qty' => 1, 'price' => 100]]);
+    //dd(Cart::content());
+    //dd(Cart::count());
+});
