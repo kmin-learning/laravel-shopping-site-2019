@@ -38,7 +38,7 @@
                 <div class="col-md-5">
 			        <ul class="nav navbar-nav navbar-right">
 			        <!-- class="dropdown-toggle" data-toggle="dropdown" -->
-				        <li id='shoppingcart'><a href="#"  >
+				        <li id='shoppingcart'><a href={{ route('Cart_detail') }}  >
                             <span class="glyphicon glyphicon-shopping-cart"></span>Cart <span class="badge"> @include('cart.quantities')</span> </a>
 				        </li>
 

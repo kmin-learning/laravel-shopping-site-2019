@@ -49,7 +49,7 @@
 				</tbody>
 				<thead>
 					<tr>
-						<th colspan="8"> Total: {{ Cart::Total() }} </th>
+						<th colspan="8"> Total: {{ Cart::subtotal() }} </th>
 						
 					</tr>
 				</thead>
