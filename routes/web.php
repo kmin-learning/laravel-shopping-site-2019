@@ -23,6 +23,8 @@ Route::get('product_detail/{id}','ProductController@show');
 
 Route::post('command_add_product','CartController@store');
 Route::get('Cart_detail','CartController@index');
+Route::get('check_out','CheckOutController@index');
+Route::get('update_quantity/{id}', 'CartController@update');
 
 //Route admin
 Route::prefix('admin')->group( function() {

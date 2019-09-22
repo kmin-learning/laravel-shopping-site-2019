@@ -16,7 +16,9 @@ class CartController extends Controller
      */
     public function index()
     {
-        dd(Cart::content());
+        $content = Cart::content();
+        $this->data['cart'] = $content;
+        return view('cart.cart', $this->data);
     }
 
     /**
@@ -42,7 +44,8 @@ class CartController extends Controller
         $product_info = Product::find($id_product);
         $product_name = $product_info->product_name;
         $product_price = $product_info->product_price;
-        Cart::add([['id' => $id_product, 'name' => $product_name, 'qty' => $quantity, 'price' => $product_price]]);
+        $product_image = $product_info->product_image;
+        Cart::add([['id' => $id_product, 'name' => $product_name, 'qty' => $quantity, 'price' => $product_price, 'options' => array('image' => $product_image),]]);
         return Redirect::to("Cart_detail");
     }
 
@@ -77,7 +80,21 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        if (Request::get('product_id') && (Request::get('decrease')) == 1) {
+            $rowId = Cart::search(array('id' => $request->input('product_id')));
+            $item = $id->input($rowId[0]);
+    
+            Cart::update($rowId[0], $item->qty - 1);
+        }
+        
+        if (Request::get('product_id') && (Request::get('increment')) == 1) {
+            $rowId = Cart::search(array('id' => $request->input('product_id')));
+            $item = $id->input($rowId[0]);
+    
+            Cart::update($rowId[0], $item->qty + 1);
+        }
+ 
     }
 
     /**
@@ -89,5 +106,9 @@ class CartController extends Controller
     public function destroy($id)
     {
         //
+        
+        $rowId = Cart::search(array('id' => $id->input('product_id')));
+        Cart::remove($rowId[0]);
+       
     }
 }
