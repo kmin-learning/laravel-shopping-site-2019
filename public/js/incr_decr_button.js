@@ -1,74 +1,74 @@
-function validate_quanity(){
-    var counter = $("#quanity").val();
-    var max_quanity =100;
-    var min_quanity =1;
+function validate_quantity(){
+    var counter = $("#quantity").val();
+    var max_quantity =100;
+    var min_quantity =1;
     //Check invalid number
     if ($.isNumeric(counter))
     {
-        if(counter > max_quanity)
+        if(counter > max_quantity)
         {
-            $("#quanity").val(max_quanity);
+            $("#quantity").val(max_quantity);
         }
-        else if (counter < min_quanity)
+        else if (counter < min_quantity)
         {
-            $("#quanity").val(min_quanity);
+            $("#quantity").val(min_quantity);
         }
         else
         {
-            $("#quanity").val();
+            $("#quantity").val();
         }
     }
     else
     {
-        $("#quanity").val(min_quanity);
+        $("#quantity").val(min_quantity);
     }
 }
 
 function check_incr(){
-    var counter = parseInt($("#quanity").val());
-    var max_quanity =100;
-    var min_quanity =1;
+    var counter = parseInt($("#quantity").val());
+    var max_quantity =100;
+    var min_quantity =1;
 
-    if(counter >= min_quanity && counter < max_quanity){
+    if(counter >= min_quantity && counter < max_quantity){
         counter = ++counter;
-        $("#quanity").val(counter);
+        $("#quantity").val(counter);
     }
-    else if(counter < min_quanity)
+    else if(counter < min_quantity)
     {
-        $("#quanity").val(min_quanity + 1);
+        $("#quantity").val(min_quantity + 1);
     }
     else
     {
-        $("#quanity").val(max_quanity);
+        $("#quantity").val(max_quantity);
     }
 }
 
 function check_decr(){
-    var counter = parseInt($("#quanity").val());
-    var max_quanity =100;
-    var min_quanity =1;
+    var counter = parseInt($("#quantity").val());
+    var max_quantity =100;
+    var min_quantity =1;
 
-    if(counter > min_quanity && counter <= max_quanity)
+    if(counter > min_quantity && counter <= max_quantity)
     {
         counter = --counter;
-        $("#quanity").val(counter);
+        $("#quantity").val(counter);
     }
-    else if(counter > max_quanity)
+    else if(counter > max_quantity)
     {
-        $("#quanity").val(max_quanity -1);
+        $("#quantity").val(max_quantity -1);
     }
     else{
-        $("#quanity").val(min_quanity);
+        $("#quantity").val(min_quantity);
     }
 }
 
-$("#quanity").blur(validate_quanity);
-$("#increase").mousedown(function(e) {
+$("#quantity").blur(validate_quantity);
+$("#increase").mousedown(function(e){ 
     e.preventDefault();
     check_incr();
 });
 
-$("#decrease").mousedown(function(e){
+$("#decrease").mousedown( function(e){
     e.preventDefault();
     check_decr();
 });

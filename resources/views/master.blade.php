@@ -15,40 +15,52 @@
     @section('header')
     <div class="navbar navbar-default navbar-fixed-top" id="topnav">
 		<div class="container-fluid">
-			<div class="navbar-header">
-				<a href="index.php" class="navbar-brand">OnlineShopping</a>
-			</div>
-			<form method="post">
-				<ul class="nav navbar-nav">
-					<li style="width:300px;left:10px;top:10px;"><input type="text" class="form-control" id="search" name="search">
-					</li>
-					<li style="top:10px;left:20px;"><button class="btn btn-primary" id="search_btn" name=""><span
-								class='glyphicon glyphicon-search'></span></button></li>
-				</ul>
-			</form>
-			<ul class="nav navbar-nav navbar-right">
-			<!-- class="dropdown-toggle" data-toggle="dropdown" -->
-				<li id='shoppingcart'><a href="#"  >
-                    <span class="glyphicon glyphicon-shopping-cart"></span>Cart <span class="badge"> @include('cart.quantities')</span> </a>
-				</li>
+            <div class="row">
+                <div class="col-md-2">
+			        <div class="navbar-header">
+				    <a href="index.php" class="navbar-brand">OnlineShopping</a>
+                    </div>
+                </div>
+                <div class="col-md-5 dropdown">
+			        <form method="get" action={{url('command_search_keyword_product')}} autocomplete="off">
+                    {{ csrf_field() }}
+				        <ul class="nav navbar-nav">
+                            <li class="form-group" style="width:450px;left:10px;top:10px;">
+                                <input type="text" class="form-control" id="search" name="search_keyword">
+                                <div id="suggestion_box"></div>
+					        </li>
+					        <li style="top:10px;left:20px;"><button class="btn btn-primary" id="search_btn" name=""><span
+                                class='glyphicon glyphicon-search'></span></button>
+                            </li>
+				        </ul>
+                    </form>
+                </div>
+                <div class="col-md-5">
+			        <ul class="nav navbar-nav navbar-right">
+			        <!-- class="dropdown-toggle" data-toggle="dropdown" -->
+				        <li id='shoppingcart'><a href="#"  >
+                            <span class="glyphicon glyphicon-shopping-cart"></span>Cart <span class="badge"> @include('cart.quantities')</span> </a>
+				        </li>
 
-				<?php
-				if(isset($_COOKIE['user'])){
-					echo '<li><a href="#" class="dropdowm-toggle" data-toggle="dropdown"><span
-					class="glyphicon glyphicon-user"></span>Hello, '.$_COOKIE['user'].'</a></li>';
+				    <?php
+				        if(isset($_COOKIE['user'])){
+					        echo '<li><a href="#" class="dropdowm-toggle" data-toggle="dropdown"><span
+					        class="glyphicon glyphicon-user"></span>Hello, '.$_COOKIE['user'].'</a></li>';
 
 					
-					echo '<li><a href="index.php?logout_id=1">Log Out</a></li>';
-				}
-				else	
-				{
+					        echo '<li><a href="index.php?logout_id=1">Log Out</a></li>';
+				        }
+				        else	
+				        {
 					?>
-					<li><a href="{{url('login')}}" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-user"></span>Login</a>
-				<?php
-				}
-				?>
-			</ul>
+					    <li><a href="{{url('login')}}" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user"></span>Login</a>
+				    <?php
+				        }
+				    ?>
+                    </ul>
+                </div>
+            </div>
 		</div>
 	</div>
     <br><br><br>
@@ -214,4 +226,5 @@
         </div>
     @show
 </div>
+<script type="text/javascript" src="{{URL::asset('js/autofill.js')}}"></script>
 </body>
