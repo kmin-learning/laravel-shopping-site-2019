@@ -29,3 +29,8 @@ Route::prefix('admin')->group( function() {
     Route::get('order_list', 'OrderController@index')->name('order_list)');
     Route::get('order_detail/{id}','OrderController@show');
 });
+
+//Auto fill the text to search
+Route::post('auto_fill','ProductController@fetch');
+//Search keyword to find the product
+Route::get('command_search_keyword_product','ProductController@search_keyword');

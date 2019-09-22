@@ -87,4 +87,34 @@ class ProductController extends Controller
     {
         //
     }
+
+    public function fetch(Request $request)
+    {
+        if ($request->input('data_search')){
+            $query = $request->input('data_search');
+            $data = Product::where('product_name','LIKE','%'.$query.'%')->get();
+            //$data_author_name = Product::where('author_name','LIKE','%'.$query.'%')->get();
+            $output = '<ul class="dropdown-menu" style="display:block; position:absolute">';
+            foreach ($data as $row)
+            {
+                $output .= '<li onClick="'."hide_suggestion_box('".$row->product_name."')".'">'.'<a href="#">'.$row->product_name.'</a></li>';
+            }
+            $output .= '</ul>';
+            return $output;
+        }
+    }
+
+    public function search_keyword(Request $request)
+    {
+        if ($request->input('search_keyword'))
+        {
+            $keyword = $request->input('search_keyword');
+            $data = Product::where('product_name','LIKE','%'.$keyword.'%')
+                           ->orwhere('author_name','LIKE','%'.$keyword.'%')
+                           ->paginate(2);
+            //dd($data);
+            $data->appends($request->only('Product'));
+            return view('search_product',compact('data'));
+        }
+    }
 }
