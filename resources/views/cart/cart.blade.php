@@ -20,7 +20,6 @@
 					<th>Unit price</th>
 					<th>Quantity </th>
 					<th>Total</th>
-					<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -31,19 +30,17 @@
 							<td> {{ number_format($item->price) }} </td>
 							<td>
 								<div class="cart_quantity_input">
-									<form action='{{url("update_quantity/$item->id&increment=1")}}' method="post">
-										<input type="hidden" name="product_id" value="{{ $item->id }}">
-										<button type="button" id="decrease" style="width:30px">+</button>
-									</form>
-									<input class="cart_quantity_input" type="tel" id="quantity" value="{{$item->qty}}" style="width:30px">
-									<form action='{{url("update_quantity/$item->id&decrease=1")}}'>
-										<button type="button" id="increase" style="width:30px">-</button>
+									<form action='{{ route('update_quantity') }}' method="post" id="form_cart">
+										{{ csrf_field() }}
+										<input type="hidden" name="product_row_id" value="{{ $item->rowId }}">
+										<button type="submit" id="cart_decrease" style="width:30px" name="decrease" value="decrease">-</button>
+										<input class="cart_quantity_input" type="tel" id="input_quantity" name="product_quantity" value="{{$item->qty}}" style="width:30px">
+										<button type="submit" id="cart_increase" name="increase" value="increase" style="width:30px">+</button>
+										<button type="submit" id="remove" class="btn btn-danger btn-sm cart_quantity_delete" name="remove_product" value="remove_product"><i class="fa fa-times"></i>Remove</button>
 									</form>
 								</div>
 							</td>
 							<td class="cart_total_price"> {{ number_format($item->subtotal) }} </td>
-							<td class="cart_delete">
-                            <a type="button" class="btn btn-danger btn-sm cart_quantity_delete " href="{{url("remove_cart_product/$item->id")}}"><i class="fa fa-times"></i>Remove</a>
 						</tr>
 						@endforeach
 				</tbody>

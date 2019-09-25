@@ -237,4 +237,5 @@
     @show
 </div>
 <script type="text/javascript" src="{{URL::asset('js/autofill.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('js/input_cart_detail.js')}}"></script>
 </body>

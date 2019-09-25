@@ -78,23 +78,52 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        
-        if (Request::get('product_id') && (Request::get('decrease')) == 1) {
-            $rowId = Cart::search(array('id' => $request->input('product_id')));
-            $item = $id->input($rowId[0]);
-    
-            Cart::update($rowId[0], $item->qty - 1);
+        $rowId = $request->get('product_row_id');
+        $quantity = $request->get('product_quantity');
+        $decrease_button = $request->get('decrease');
+        $increase_button = $request->get('increase');
+        $remove = $request->get('remove_product');
+        //dd($remove);
+
+        if ( $decrease_button != '')
+        {
+            $new_quantity = $quantity - 1;
+            if ( $new_quantity <= 0)
+            {
+                Cart::remove($rowId);
+                return Redirect::to("Cart_detail");
+            }
+            else {
+                Cart::update($rowId, $new_quantity);
+                return Redirect::to("Cart_detail");
+            }
         }
-        
-        if (Request::get('product_id') && (Request::get('increment')) == 1) {
-            $rowId = Cart::search(array('id' => $request->input('product_id')));
-            $item = $id->input($rowId[0]);
-    
-            Cart::update($rowId[0], $item->qty + 1);
+        elseif ($increase_button != '')
+        {
+            $new_quantity = $quantity + 1;
+            Cart::update($rowId, $new_quantity);
+            return Redirect::to("Cart_detail");
         }
- 
+        elseif ($remove != '')
+        {
+            Cart::remove($rowId);
+            return Redirect::to('Cart_detail');
+        }
+        elseif ($quantity !='' && $decrease_button =='' && $increase_button =='' && $remove =='')
+        {
+            $pattern = '/^[0-9]*$/';
+            if( preg_match($pattern, $quantity))
+            {
+                Cart::update($rowId, $quantity);
+                return Redirect::to("Cart_detail");
+            }
+            else {
+                Cart::remove($rowId);
+                return Redirect::to("Cart_detail");
+            }
+        }
     }
 
     /**
