@@ -43,3 +43,6 @@ Route::get('testProduct', function(){
     //dd(Cart::content());
     //dd(Cart::count());
 });
+
+//Route add cart into database
+Route::post('save_order','OrderController@store')->name('save_order');
