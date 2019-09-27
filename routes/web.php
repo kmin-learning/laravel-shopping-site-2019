@@ -24,7 +24,7 @@ Route::get('product_detail/{id}','ProductController@show');
 Route::post('command_add_product','CartController@store');
 Route::get('Cart_detail','CartController@index')->name('Cart_detail');
 Route::get('check_out','CheckOutController@index');
-Route::get('update_quantity/{id}', 'CartController@update');
+Route::post('update_quantity', 'CartController@update')->name('update_quantity');
 
 //Route admin
 Route::prefix('admin')->group( function() {

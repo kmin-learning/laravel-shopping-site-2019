@@ -83,7 +83,7 @@
 		<div class="container">
 			<div class="top-nav">
 				<ul class="memenu skyblue">
-                    <li class="active"><a href="index.php">Home</a></li>
+                    <li class="active"><a href={{ url('/') }}>Home</a></li>
                     
 					<li class="grid"><a href="#">Products</a></li>
                     
@@ -237,4 +237,5 @@
     @show
 </div>
 <script type="text/javascript" src="{{URL::asset('js/autofill.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('js/input_cart_detail.js')}}"></script>
 </body>
